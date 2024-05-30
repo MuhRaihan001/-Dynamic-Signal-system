@@ -1,7 +1,11 @@
 # Tower Signal System Usage Documentation
 
 This documentation aims to assist other developers in utilizing and integrating the tower signal system into their projects. This system enables the creation, editing, loading, and checking of signals from towers. Below are the step-by-step instructions on how to use various features within this system.
-
+## Require
+- SA-MP 0.3.7
+- Streamer
+- Mysql R39
+- y_iterate
 ## Usage Steps
 
 ### 1. Creating a New Tower
