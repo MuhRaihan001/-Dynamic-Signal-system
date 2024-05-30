@@ -24,7 +24,7 @@ This will create a tower with ID 1 and a radius of 50.0 at the player's current 
 
 ### 2. Editing Tower Radius
 
-To edit the radius of an existing tower, use the command `/editradius`. This will update the tower's radius with the specified ID.
+To edit the radius of an existing tower, use the command `/editradius`. This command will update the tower's radius with the specified ID.
 
 **Command Format:**
 
@@ -122,12 +122,12 @@ This will send a message to the player indicating whether they are within the to
 
    ```c
    CMD:call(playerid)
-  {
+   {
     new signal = CatchNearSignal(playerid);
     if(signal == -1)
       return SendClientMessage(playerid,  -1, "No signal");
     //rest of your code
-  }
+   }
    ```
 
 By following this guide, you'll be able to integrate and use the tower signal system in your SA-MP project seamlessly. If there are any questions or issues, be sure to check the server logs for further information on any errors that may occur.
