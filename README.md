@@ -99,7 +99,7 @@ This will send a message to the player indicating whether they are within the to
    Place all functions and commands from this script into your main script or in a separate file that you then include.
 
    ```c
-   #include "signal_system.inc"
+   #include "signas.pwn"
    ```
 
 ### Usage in Project
@@ -109,7 +109,6 @@ This will send a message to the player indicating whether they are within the to
    Make sure to call `LoadTowers()` when the server starts to load all towers from the database.
 
    ```c
-   #include "path/to/signal.pwn"
    public OnGameModeInit()
    {
        LoadTowers();
