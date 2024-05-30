@@ -12,18 +12,20 @@ enum tower_data
 }
 new TowerData[MAX_TOWERS][tower_data];
 new TowerArrayObject[MAX_TOWERS];
+new Iterator:TowerIds<MAX_TOWERS>;
 
-Signal:CreateTowerSignal(id, Float:x, Float:y, Float:z, Float:radius)
+Signal:CreateTowerSignal(Float:x, Float:y, Float:z, Float:radius)
 {
-    new text[310], query[510];
+    new text[310], query[510], id = Iter_Free(TowerIds);
     TowerData[id][TOWER_ID] = id;
     TowerData[id][TOWER_RADIUS] = radius;
     TowerData[id][TOWER_STATUS] = true;
     format(text, sizeof(text), "ID:%d\nStatus:%s\nRadius:%fm", id, TowerData[id][TOWER_STATUS] ? ("Good") : ("Bad"), radius);
     TowerData[id][TOWER_TEXT] = Create3DTextLabel(text, 0xFFFFFFFF, x, y, z, 50.0, 0);
-    TowerArrayObject[id] = CreateObject(TOWER_OBJECT, x, y, z, 0.0, 0.0, 0.0, 50.0);
+    TowerArrayObject[id] = CreateDynamicObject(TOWER_OBJECT, x, y, z, 0.0, 0.0, 0.0, 0, 0);
     mysql_format(mysql, query, sizeof query, "INSERT INTO signals (`id`, `radius`, `x`, `y`, `z`) VALUES (%d, %f, %f, %f, %f)", id, radius, x, y, z);
     mysql_query(mysql, query, false);
+    //CO_SetObject(TowerArrayObject[id]);
     print("[Signal-System] New tower to spread signal created");
     return 1;
 }
@@ -44,7 +46,9 @@ Signal:LoadTowers()
         TowerData[i][TOWER_STATUS] = true;
         format(text, sizeof(text), "ID:%d\nStatus:%s\nRadius:%fm", i, TowerData[i][TOWER_STATUS] ? ("Good") : ("Bad"), TowerData[i][TOWER_RADIUS]);
         TowerData[i][TOWER_TEXT] = Create3DTextLabel(text, 0xFFFFFFFF, TowerData[i][TOWER_POS][0], TowerData[i][TOWER_POS][1], TowerData[i][TOWER_POS][2], 50.0, 0);
-        TowerArrayObject[i] = CreateObject(TOWER_OBJECT, TowerData[i][TOWER_POS][0], TowerData[i][TOWER_POS][1], TowerData[i][TOWER_POS][2], 0.0, 0.0, 0.0, 50.0);
+        TowerArrayObject[i] = CreateDynamicObject(TOWER_OBJECT, TowerData[i][TOWER_POS][0], TowerData[i][TOWER_POS][1], TowerData[i][TOWER_POS][2], 0.0, 0.0, 0.0, 0, 0);
+        Iter_Add(TowerIds, i);
+        //CO_SetObject(TowerArrayObject[i]);
     }
     print("[Signal-System] Loaded all tower to spread signal across city");
     cache_delete(result);
@@ -75,12 +79,11 @@ Signal:RefreshTower()
 
 CMD:createtower(playerid, params[])
 {
-    new id, Float: radius, Float:x, Float:y, Float:z;
-    if(sscanf(params, "if", id, radius)) return SendClientMessage(playerid, 0xCECECEFF, "Use: /createtower [id] [radius]");
-    if(id < 0 || id >= MAX_TOWERS) return SendClientMessage(playerid, 0xCECECEFF, "[Signal-System] Invalid id");
+    new Float: radius, Float:x, Float:y, Float:z;
+    if(sscanf(params, "f", radius)) return SendClientMessage(playerid, 0xCECECEFF, "Use: /createtower [radius]");
     if(radius < 0.0) return SendClientMessage(playerid, 0xCECECEFF, "[Signal-System] Invalid radius for this tower");
     GetPlayerPos(playerid, x, y, z);
-    CreateTowerSignal(id, x, y, z, radius);
+    CreateTowerSignal(x, y, z, radius);
     return 1;
 }
 
