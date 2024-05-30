@@ -131,3 +131,6 @@ This will send a message to the player indicating whether they are within the to
    ```
 
 By following this guide, you'll be able to integrate and use the tower signal system in your SA-MP project seamlessly. If there are any questions or issues, be sure to check the server logs for further information on any errors that may occur.
+
+### Credit
+This script created by TsumuX and Oxy
