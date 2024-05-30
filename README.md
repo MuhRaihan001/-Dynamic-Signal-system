@@ -11,13 +11,13 @@ To create a new tower, use the command `/createtower`. The tower will be created
 **Command Format:**
 
 ```
-/createtower [id] [radius]
+/createtower [radius]
 ```
 
 **Example:**
 
 ```
-/createtower 1 50.0
+/createtower 50.0
 ```
 
 This will create a tower with ID 1 and a radius of 50.0 at the player's current position.
