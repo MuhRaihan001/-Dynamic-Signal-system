@@ -94,12 +94,12 @@ This will send a message to the player indicating whether they are within the to
    );
    ```
 
-4. **Integrating Functions and Commands:**
+2. **Integrating Functions and Commands:**
 
    Place all functions and commands from this script into your main script or in a separate file that you then include.
 
    ```c
-   #include "signas.pwn"
+   #include "signals.pwn"
    ```
 
 ### Usage in Project
