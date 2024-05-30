@@ -5,7 +5,7 @@ This documentation aims to assist other developers in utilizing and integrating 
 - SA-MP 0.3.7
 - Streamer
 - Mysql R39
-- y_iterate
+- y_iterate/foreach
 ## Usage Steps
 
 ### 1. Creating a New Tower
