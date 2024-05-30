@@ -24,7 +24,8 @@ To create a new tower, use the command `/createtower`. The tower will be created
 /createtower 50.0
 ```
 
-This will create a tower with ID 1 and a radius of 50.0 at the player's current position.
+This will create a tower with ID 0 and a radius of 50.0 at the player's current position.
+Max 70 tower
 
 ### 2. Editing Tower Radius
 
