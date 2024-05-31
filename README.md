@@ -128,9 +128,7 @@ This will send a message to the player indicating whether they are within the to
    ```c
    CMD:call(playerid)
    {
-    new signal = CatchNearSignal(playerid);
-    if(signal == -1)
-      return SendClientMessage(playerid,  -1, "No signal");
+   CheckSignal(playerid);
     //rest of your code
    }
    ```
